@@ -1,0 +1,114 @@
+body {
+    position: relative;
+    height: 100vh; /* Removido o espaço entre 'calc' e '(' */
+    background: 
+        linear-gradient(to bottom right, white, rgb(254, 250, 242)), /* Gradiente do canto superior esquerdo para o inferior direito */
+        linear-gradient(to bottom left, white, rgb(254, 254, 245)); /* Gradiente do canto superior direito para o inferior esquerdo */
+    background-blend-mode: multiply; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+header img {
+    width: 7.5%;
+    
+}
+
+.logo_container {
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 85px;
+}
+
+header {
+    position: relative;
+    background-color: #DD7A2D;
+    width: 97%;
+    height: 65px;
+    position: relative;
+    display: flex; /* Flexbox para centralizar e facilitar o layout */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    padding-left: 3%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+header span {
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+.container {
+    display: flex;
+    width: 750px;
+    height: 280px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 35px;
+    border-radius: 15%;
+    margin-top: -50px;
+}
+
+.container p {
+    font-size: 18px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.arquivo {
+    padding: 10px;
+    background-color: #DD7A2D;
+    color: white;
+    border: none;
+    border-radius: 5%;
+    font-size: 15px;  
+}
+
+.enviar {
+    background-color: #dbaf8e;
+    color: white;
+    padding: 10px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10%;
+    font-size: 15px;
+    margin-top: -7px;        
+}
+
+.container_botao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+footer p {
+    text-align: center;
+}

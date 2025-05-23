@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valida projetos - Softex</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/clienteHome.css">
+</head>
+<body>
+    <header>
+        <div class="logo_container">
+            <img src="assets/logo55.png" alt="Logo Softex"> 
+            <span>Bem-vindo(a) à Softex</span>
+        </div>
+        <a href="/logout" ><div style="cursor: pointer; width: 35px; height: 35px; border: 1px solid white; border-radius: 50%; margin-right: 35px; box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5); display: flex; justify-content: center; align-items: center;" id="logoutButton"><span style="color: white; margin-right: 10px;">&#x21A9;</span></div></a>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Área de Upload de Editais</h1>
+            <p>Envie aqui o edital para análise e aprovação. Certifique-se de que o arquivo esta no formato PDF e que atend aos requisitos de tamanho e conteúdo.</p>
+            <div class="container_botao">
+                <input type="file" class="arquivo" accept=".pdf" /><br />
+                <button class="enviar">Enviar</button>
+            </div>
+            <div class="ativo_desativo"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Softex. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Quando o arquivo for selecionado, exibir o nome do arquivo na div 'ativo_desativo'
+        document.querySelector('.arquivo').addEventListener('change', function() {
+            const fileInput = document.querySelector('.arquivo');
+            const fileName = fileInput.files[0] ? fileInput.files[0].name : ''; // Verifica se há arquivo selecionado
+    
+            // Exibe o nome do arquivo na div
+            document.querySelector('.ativo_desativo').textContent = fileName ? `Arquivo selecionado: ${fileName}` : 'Nenhum arquivo selecionado';
+        });
+    
+        // Evento para enviar o arquivo quando o botão "Enviar" for clicado
+        document.querySelector('.enviar').addEventListener('click', function() {
+            const arquivoInput = document.querySelector('.arquivo');
+            const arquivo = arquivoInput.files[0];
+    
+            if (!arquivo) {
+                alert('Por favor, selecione um arquivo PDF!');
+                return;
+            }
+    
+            if (arquivo.type !== 'application/pdf') {
+                alert('O arquivo deve ser um PDF!');
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append('arquivo', arquivo);
+    
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Arquivo enviado com sucesso!');
+                } else {
+                    alert('Erro ao enviar o arquivo.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao enviar o arquivo.');
+            });
+        });
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.querySelector('.ativo_desativo').textContent = `Arquivo enviado com sucesso!`;
+            } else {
+                document.querySelector('.ativo_desativo').textContent = `Erro ao enviar o arquivo.`;
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            document.querySelector('.ativo_desativo').textContent = `Ocorreu um erro ao enviar o arquivo.`;
+        });
+
+    </script>
+</body>
